@@ -10,14 +10,6 @@ pi install git:github.com/divyam-ai/divyam-pi-extension
 
 Then add your API key: run `/login` in Pi, choose **Sign in with an API key**, then **Divyam**. Pi saves it in `~/.pi/agent/auth.json`. Until a key is set, Pi shows a reminder at startup. You can set `DIVYAM_API_KEY` before starting Pi instead.
 
-If `enabledModels` is set in `~/.pi/agent/settings.json`, `/model` opens on that list and Ctrl+P cycles through it, which would hide the Divyam models. So the install adds them to the list. Until a key is set, Pi warns at startup that those entries match no models. Pi repeats this step when an update brings new commits, so removed entries come back then.
-
-Local-path installs, project installs (`pi install -l`) and `pi -e` runs leave `enabledModels` alone. Add the models with `/scoped-models`, or press Tab in `/model` to see every model.
-
-## Configuration
-
-`/login` also changes the key, and `/logout` removes it.
-
 `DIVYAM_BASE_URL` points Pi at another router deployment. The default is `https://api.preview.divyam.ai/v1`.
 
 ## Uninstall
