@@ -5,7 +5,7 @@ A [Pi](https://pi.dev) package that adds Divyam Router as the `divyam` model pro
 ## Install
 
 ```bash
-pi install git:github.com/jeril-divyam/divyam-pi-extension
+pi install git:github.com/divyam-ai/divyam-pi-extension
 ```
 
 Then add your API key: run `/login` in Pi, choose **Sign in with an API key**, then **Divyam**. Pi saves it in `~/.pi/agent/auth.json`. Until a key is set, Pi shows a reminder at startup. You can set `DIVYAM_API_KEY` before starting Pi instead.
@@ -23,7 +23,7 @@ Local-path installs, project installs (`pi install -l`) and `pi -e` runs leave `
 ## Uninstall
 
 ```bash
-pi remove git:github.com/jeril-divyam/divyam-pi-extension
+pi remove git:github.com/divyam-ai/divyam-pi-extension
 ```
 
 Pi doesn't run any package code on removal, so these stay behind:
