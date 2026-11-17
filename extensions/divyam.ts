@@ -1,11 +1,12 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { MODELS, PROVIDER } from "../lib/divyam.mjs";
 
-// Divyam Router is a drop-in for the OpenAI Chat Completions API, so Pi's built-in
-// openai-completions implementation handles requests, streaming, tools and usage.
+// Divyam serves the OpenAI Chat Completions API for every model class, the Claude ones
+// included, so Pi's built-in openai-completions implementation handles requests,
+// streaming, tools and usage.
 //
 // The key comes from auth.json, where /login stores it, or from DIVYAM_API_KEY.
-// DIVYAM_BASE_URL points Pi at another router deployment; the default is the preview
+// DIVYAM_BASE_URL points Pi at another Divyam deployment; the default is the preview
 // environment.
 const DEFAULT_BASE_URL = "https://api.preview.divyam.ai/v1";
 
@@ -15,14 +16,14 @@ export default function divyamProvider(pi: ExtensionAPI) {
 		baseUrl: process.env.DIVYAM_BASE_URL?.trim() || DEFAULT_BASE_URL,
 		api: "openai-completions",
 		apiKey: "$DIVYAM_API_KEY",
-		models: MODELS.map(({ id, name }) => ({
+		models: MODELS.map(({ id, name, contextWindow, cost }) => ({
 			id,
 			name,
 			reasoning: false,
-			input: ["text"],
-			contextWindow: 400_000,
+			input: ["text", "image"],
+			contextWindow,
 			maxTokens: 128_000,
-			cost: { input: 2, output: 10, cacheRead: 0.2, cacheWrite: 2.5 },
+			cost,
 		})),
 	});
 
