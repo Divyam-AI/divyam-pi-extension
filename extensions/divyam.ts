@@ -6,9 +6,8 @@ import { MODELS, PROVIDER } from "../lib/divyam.mjs";
 // streaming, tools and usage.
 //
 // The key comes from auth.json, where /login stores it, or from DIVYAM_API_KEY.
-// DIVYAM_BASE_URL points Pi at another Divyam deployment; the default is the preview
-// environment.
-const DEFAULT_BASE_URL = "https://api.preview.divyam.ai/v1";
+// Requests go to the preview environment.
+const BASE_URL = "https://api.preview.divyam.ai/v1";
 
 // Pi sends the thinking level as reasoning_effort; "off" sends none, so the model's own
 // default applies. Pi has no per-model default level, so switching to a Divyam model from
@@ -19,7 +18,7 @@ const DEFAULT_THINKING_LEVEL = "medium";
 export default function divyamProvider(pi: ExtensionAPI) {
 	pi.registerProvider(PROVIDER, {
 		name: "Divyam",
-		baseUrl: process.env.DIVYAM_BASE_URL?.trim() || DEFAULT_BASE_URL,
+		baseUrl: BASE_URL,
 		api: "openai-completions",
 		apiKey: "$DIVYAM_API_KEY",
 		models: MODELS.map(({ id, name, contextWindow, cost }) => ({

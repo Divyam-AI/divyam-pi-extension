@@ -10,7 +10,7 @@ pi install git:github.com/divyam-ai/divyam-pi-extension
 
 Then add your API key: run `/login` in Pi, choose **Sign in with an API key**, then **Divyam**. Pi saves it in `~/.pi/agent/auth.json`. Until a key is set, Pi shows a reminder at startup. You can set `DIVYAM_API_KEY` before starting Pi instead.
 
-`DIVYAM_BASE_URL` points Pi at another Divyam deployment. The default is `https://api.preview.divyam.ai/v1`.
+Requests go to Divyam's preview environment, `https://api.preview.divyam.ai/v1`.
 
 ## Uninstall
 
