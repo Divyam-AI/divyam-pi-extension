@@ -22,7 +22,6 @@ Pi doesn't run any package code on removal, so these stay behind:
 
 - The key in `auth.json`. Remove it with `/logout` before uninstalling.
 - The `divyam/...` entries the install added to `enabledModels` in `~/.pi/agent/settings.json`.
-- `~/.pi/agent/divyam-models-offered.json`, which records the models the install has added so an update adds only new ones.
 
 ## Models
 
