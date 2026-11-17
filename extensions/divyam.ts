@@ -10,6 +10,12 @@ import { MODELS, PROVIDER } from "../lib/divyam.mjs";
 // environment.
 const DEFAULT_BASE_URL = "https://api.preview.divyam.ai/v1";
 
+// Pi sends the thinking level as reasoning_effort; "off" sends none, so the model's own
+// default applies. Pi has no per-model default level, so switching to a Divyam model from
+// another provider sets this one. Switching between Divyam models keeps the current level,
+// and a resumed session keeps the level it was saved with.
+const DEFAULT_THINKING_LEVEL = "medium";
+
 export default function divyamProvider(pi: ExtensionAPI) {
 	pi.registerProvider(PROVIDER, {
 		name: "Divyam",
@@ -19,12 +25,18 @@ export default function divyamProvider(pi: ExtensionAPI) {
 		models: MODELS.map(({ id, name, contextWindow, cost }) => ({
 			id,
 			name,
-			reasoning: false,
+			reasoning: true,
 			input: ["text", "image"],
 			contextWindow,
 			maxTokens: 128_000,
 			cost,
 		})),
+	});
+
+	pi.on("model_select", (event) => {
+		if (event.model.provider !== PROVIDER || event.source === "restore") return;
+		if (event.previousModel?.provider === PROVIDER) return;
+		pi.setThinkingLevel(DEFAULT_THINKING_LEVEL);
 	});
 
 	pi.on("session_start", (_event, ctx) => {

@@ -32,6 +32,6 @@ Pi doesn't run any package code on removal, so these stay behind:
 | `divyam/divyam-as/gpt-5.6-sol` | 1.05M | 128K |
 | `divyam/divyam-as/gpt-6-sol` | 1.05M | 128K |
 
-Every model takes text and images. Which ones you can use depends on your plan: new preview accounts get the Claude models, older ones the GPT models. Pi's cost figures are an estimate; your plan sets what you're charged.
+Every model takes text and images, and Pi's thinking level is sent as `reasoning_effort`. Switching to a Divyam model from another provider sets the level to `medium`; change it as usual, and `off` leaves the effort to the model. Which ones you can use depends on your plan: new preview accounts get the Claude models, older ones the GPT models. Pi's cost figures are an estimate; your plan sets what you're charged.
 
 This package replaces any `divyam` provider defined in `~/.pi/agent/models.json`.
