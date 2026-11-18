@@ -8,7 +8,7 @@ A [Pi](https://pi.dev) package that adds Divyam as the `divyam` model provider.
 pi install git:github.com/divyam-ai/divyam-pi-extension
 ```
 
-Then add your API key: run `/login` in Pi, choose **Sign in with an API key**, then **Divyam**. Pi saves it in `~/.pi/agent/auth.json`. Until a key is set, Pi shows a reminder at startup. You can set `DIVYAM_API_KEY` before starting Pi instead.
+Then add your API key: run `/login` in Pi, choose **Sign in with an API key**, then **Divyam**. Pi saves it in `~/.pi/agent/auth.json`. Until a key is set, Pi shows a reminder at startup. You can also set `DIVYAM_API_KEY` before starting Pi. If you have logged in with `/login`, Pi uses that key and ignores `DIVYAM_API_KEY`. To switch to `DIVYAM_API_KEY`, run `/logout` and choose Divyam.
 
 Requests go to Divyam's preview environment, `https://api.preview.divyam.ai/v1`. To use another environment, set `DIVYAM_BASE_URL` to its address without `/v1` before starting Pi, for example `DIVYAM_BASE_URL=http://localhost:9100`; the package adds `/v1` itself.
 
