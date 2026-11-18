@@ -6,8 +6,17 @@ import { MODELS, PROVIDER } from "../lib/divyam.mjs";
 // streaming, tools and usage.
 //
 // The key comes from auth.json, where /login stores it, or from DIVYAM_API_KEY.
-// Requests go to the preview environment.
-const BASE_URL = "https://api.preview.divyam.ai/v1";
+// Requests go to the preview environment unless DIVYAM_BASE_URL names another one.
+const DEFAULT_BASE_URL = "https://api.preview.divyam.ai";
+
+// DIVYAM_BASE_URL is the part before /v1, e.g. http://localhost:9100. Trailing slashes
+// are dropped so the path doesn't double up.
+function baseUrl(): string {
+	const base = (process.env.DIVYAM_BASE_URL ?? "").trim().replace(/\/+$/, "");
+	return `${base || DEFAULT_BASE_URL}/v1`;
+}
+
+const BASE_URL = baseUrl();
 
 // Pi sends the thinking level as reasoning_effort; "off" sends none, so the model's own
 // default applies. Pi has no per-model default level, so switching to a Divyam model from
